@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jak dobrý jsi na rande? – definiční obor (losované)</title>
+<style>
+:root{--bg:#e6ecfb;--card:#fff;--ink:#10204a;--mut:#5b6a8f;--line:#b9c6e8;--grid:#e4e9f5;--gold:#c98500;--goldbg:#fff1cc;--ok:#13803f;--okbg:#d9f3e3;--bad:#c4302f;--badbg:#fbe0e0;--btn:#1b3a9c;--btnink:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#060b2a;--card:#0f1a4d;--ink:#eef1ff;--mut:#9fb0e6;--line:#34479a;--grid:#1c2a6b;--gold:#ffc43a;--goldbg:#4a3a0a;--ok:#4cd68a;--okbg:#0f4a2c;--bad:#ff7d7d;--badbg:#521b1b;--btn:#ffc43a;--btnink:#10204a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#060b2a;--card:#0f1a4d;--ink:#eef1ff;--mut:#9fb0e6;--line:#34479a;--grid:#1c2a6b;--gold:#ffc43a;--goldbg:#4a3a0a;--ok:#4cd68a;--okbg:#0f4a2c;--bad:#ff7d7d;--badbg:#521b1b;--btn:#ffc43a;--btnink:#10204a;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;-webkit-text-size-adjust:100%;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:540px;margin:0 auto;padding:14px}
+h1{font-size:1.6rem;margin:8px 0;text-align:center}
+h2{font-size:1rem;margin:14px 0 8px;font-weight:600}
+p{margin:8px 0}
+.hero{text-align:center;padding:24px 4px}.hero .m{font-size:3rem}
+button{font:inherit;cursor:pointer;color:inherit;-webkit-appearance:none;appearance:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.big{display:block;width:100%;padding:13px;border:0;border-radius:12px;background:var(--btn);color:var(--btnink);font-weight:700;margin-top:10px}
+.big:disabled{opacity:.4;cursor:default}
+.ghost{display:block;width:100%;padding:10px;margin-top:8px;border:1px dashed var(--line);border-radius:12px;background:none;color:var(--mut);font-size:.9rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+#qi{font-size:.9rem;color:var(--mut);line-height:1.25}#qi b{color:var(--ink)}
+.ll{display:flex;gap:6px}
+.lf{min-width:46px;height:42px;padding:0 10px;border-radius:21px;border:2px solid var(--gold);background:var(--card);color:var(--gold);font-weight:700;font-size:.85rem}
+.lf:disabled{cursor:default}.lf.used{opacity:.3;text-decoration:line-through;border-color:var(--line);color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.nm{font-weight:800;font-size:1.15rem}.lb{color:var(--mut);font-size:.85rem;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.chip{background:var(--badbg);color:var(--bad);border-radius:999px;padding:3px 11px;font-size:.92rem}
+.opts{display:grid;gap:8px}
+@media(min-width:520px){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:10px;width:100%;min-height:58px;padding:8px 16px;background:var(--card);border:2px solid var(--line);border-radius:30px;text-align:left}
+.opt .l{flex:none;font-weight:800;color:var(--gold)}
+.opt.sel{border-color:var(--gold);background:var(--goldbg)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.gone{visibility:hidden}
+#aux,#fb{margin-top:12px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0}.bar .bl{width:1.2em;font-weight:800;color:var(--gold)}
+.bt{flex:1;height:16px;background:var(--grid);border-radius:8px;overflow:hidden}.bt div{height:100%;background:var(--gold)}
+.bar .pc{width:3.2em;text-align:right;font-size:.9rem}
+details{margin-top:14px}summary{cursor:pointer;color:var(--mut)}
+ol{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column}
+li{padding:4px 10px;border-radius:8px;font-size:.9rem}li.safe{color:var(--gold);font-weight:700}li.done{opacity:.45}li.cur{background:var(--gold);color:#10204a;font-weight:700}
+</style>
+</head>
+<body>
+<main>
+<section id="start"><div class="hero"><div class="m">💘</div><h1>Jak dobrý jsi na rande?</h1>
+<p style="font-size:1.25rem;font-weight:800">Začínáš jako Hrabě Von Friendzone.</p>
+<p>Každá postava má seznam tabu, tedy vyloučených vstupů. Tvoje věta musí ležet v jejím definičním oboru, jinak funkce „spadne“ a rande je v háji.</p>
+<p>Vyber vždy tu jedinou větu, která nenarazí na žádné tabu, a vypracuj se na <b>Toho, kterému odpoví i její kámoška</b>. Jedna blbá odpověď a padáš. Poslední pětka je opravdu zlá. Každá hra je jiná, postavy, čísla i funkce se losují.</p>
+<p style="color:var(--mut);font-size:.85rem">15 otázek ve třech částech: izolované body a podmínky, průniky a složené podmínky a nakonec pět extrémně těžkých otázek se skutečnými funkcemi.</p>
+<p style="color:var(--mut);font-size:.9rem">Milníky: Lord Špatná Zpráva a Konstruktér citových škod. Když se na ně dostaneš, níž už nespadneš. Nápovědy: 50:50, publikum a telefonát (každá jen jednou).</p></div>
+<button class="big" id="go">Začít hru</button></section>
+<section id="game" hidden>
+<div class="top"><div id="qi"></div><div class="ll"><button class="lf" id="l5" title="50:50">50:50</button><button class="lf" id="la" title="Hlas publika">👥</button><button class="lf" id="lp" title="Telefonát příteli">📞</button></div></div>
+<div class="card" id="gr"></div>
+<h2 id="qh">Která věta nenarazí na žádné tabu?</h2>
+<div class="opts" id="op"></div>
+<div id="aux" hidden></div>
+<button class="big" id="lock" disabled>Konečná odpověď</button>
+<button class="ghost" id="walk"></button>
+<div id="fb" hidden></div>
+<button class="big" id="next" hidden></button>
+<details><summary>Žebříček výher</summary><ol id="lad"></ol></details>
+</section>
+<section id="end" hidden><div class="hero"><div class="m" id="em"></div><h1 id="et"></h1><p id="ep"></p></div><button class="big" id="again">Hrát znovu</button></section>
+</main>
+<script>
+var LV=["Hrabě Von Friendzone","Ivan Andrejevič Kryplov","Krouhač zelí","Generátor náhodných vět","Podbíječ","Lord Špatná Zpráva","Sběratel odmítnutí","Cockot s konverzační licencí","Bůh levných balicích hlášek","Předseda představenstva friendzony","Konstruktér citových škod","Kvantový Casanova","Génius po třetím pivu","Docent flirtologie","Noční můra vztahových poradců","Ten, kterému odpoví i její kámoška"];
+var PN=["","Izolované body a podmínky","Průniky a složené podmínky","Extrémně těžké: složené definiční obory"];
+var $=function(id){return document.getElementById(id)},LET="ABCD",R=Math.random;
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(R()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pick(a){return a[Math.floor(R()*a.length)]}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+/* ===== generátory otázek ===== */
+var P=pick,NS=[],ORD2,ORD3;
+var NM=["Vanessa", "Nikol", "Sabrina", "Alexandra", "Stella", "Natálie", "Bianca", "Valerie", "Samantha", "Vivien", "Dominika", "Aurora", "Jessica", "Isabella", "Mia"];
+var BK=[
+["ananas","","Ta pizza s ananasem tu vypadá úžasně."],["žlutá barva","","Ten tvůj žlutý kabát je skvělý."],["country","","Prý tu večer hrají country."],["bývalá","","Tohle místo mi doporučila moje bývalá."],["politika","","Vidělas ty volby? To je cirkus."],["práce","","Dneska to byl v kanceláři šílený den."],["peníze","","Ten účet za večeři mě asi zruinuje."],["horor","","Viděl jsem ten nový horor, bylo to děsivé."],["alkohol","","Dáme si k večeři víno?"],["káva","","Dáš si k tomu kávu?"],["auta","","Přijel jsem autem a nemám kam zaparkovat."],["déšť","","Doufám, že nezačne pršet."],["dieta","","Já držím dietu, ale dnes to porušíme."],
+["","zvířata s více než čtyřmi nohama","Tady prý mají vynikajícího humra."],["","zvířata s více než čtyřmi nohama","Venku jsem na zdi viděl obřího pavouka."],["","zvířata s více než čtyřmi nohama","Na stole mi přistála vosa."],
+["","maso","Tady mají nejlepší biftek v Praze."],["","maso","Dneska jsem měl k obědu řízek."],["","sladké","Mají tu fantastický čokoládový dort."],["","sladké","Dáme si zmrzlinu?"],
+["","sport","Včera jsem sledoval skvělý fotbal."],["","sport","Ráno jsem hrál tenis."],["","hlasitá hudba","Prý tu dnes hrají techno."],["","hlasitá hudba","Slyšel jsem, že tu bývá metalový koncert."],
+["","","Jaké je tvoje nejoblíbenější místo na cestování?"],["","","Líbí se mi ta knížka, co držíš. Co právě čteš?"],["","","Slyšel jsem, že tu mají skvělé těstoviny s rajčaty."],["","","Mám doma kočku Mourka."],["","","Venku je krásně, co kdybychom si sedli na terasu?"],["","","Co děláš nejraději o víkendu?"],["","","Tohle místo má opravdu příjemnou atmosféru."],["","","Máš nějaký oblíbený seriál?"],["","","Na co máš dnes chuť?"],["","","Hraješ na nějaký hudební nástroj?"]];
+var ITM=BK.map(function(f){return f[0]}).filter(Boolean),CAT=[],_c={};BK.forEach(function(f){if(f[1]&&!_c[f[1]]){_c[f[1]]=1;CAT.push(f[1])}});
+var nf=function(n){return n<0?"−"+(-n):""+n};
+var NTP=[function(n){return "Venku je "+nf(n)+" °C."},function(n){return "Moje oblíbené číslo je "+nf(n)+"."},function(n){return "Číslo domu, kde bydlím, je "+nf(n)+"."}];
+var NQ=[function(a,b){return "Venku je "+nf(a)+" °C a doma "+nf(b)+" °C."},function(a,b){return "Včera bylo "+nf(a)+" °C a dneska "+nf(b)+" °C."},function(a,b){return "Moje dvě oblíbená čísla jsou "+nf(a)+" a "+nf(b)+"."}];
+function ints(a,b){var r=[];for(var i=a;i<=b;i++)r.push(i);return r}
+function nm(){if(!NS.length)NS=shuffle(NM.slice());return NS.pop()}
+function oo(t,ok,b){return{t:t,ok:ok,b:b}}
+function lc(s){return s.charAt(0).toLowerCase()+s.slice(1)}
+function V(f,T){return f[0]&&T.i.indexOf(f[0])>=0?"„"+f[0]+"“":f[1]&&T.c.indexOf(f[1])>=0?"kategorii „"+f[1]+"“":""}
+function fr(T,ok){return shuffle(BK.filter(function(f){return!V(f,T)===ok}))}
+function asm(fs){return shuffle(fs.slice()).map(function(f){return f[2]}).join(" ")}
+function s2(tp,x,y){var p=shuffle([x,y]);return tp(p[0],p[1])}
+function iv(a,b,cl){return(cl?"⟨":"(")+nf(a)+"; "+nf(b)+(cl?"⟩":")")}
+function rsF(a,b,cl){return function(x){return!cl&&(x===a||x===b)?"číslo "+nf(x)+" leží na hranici, kterou otevřený interval nezahrnuje.":"číslo "+nf(x)+" je mimo interval."}}
+function qd(a,b){var s="x²",l=-(a+b),c=a*b;if(l)s+=" "+(l<0?"− ":"+ ")+(Math.abs(l)===1?"":Math.abs(l))+"x";if(c)s+=" "+(c<0?"− ":"+ ")+Math.abs(c);return s}
+function gTop(n,nc,two){
+ var T={i:shuffle(ITM.slice()).slice(0,n),c:shuffle(CAT.slice()).slice(0,nc)},sf=fr(T,true),
+ cv=shuffle(BK.filter(function(f){return f[1]&&T.c.indexOf(f[1])>=0})),iv2=shuffle(BK.filter(function(f){return f[0]&&T.i.indexOf(f[0])>=0})),w=[],j=0,c0=nc?2:0;
+ while(w.length<c0)w.push(cv[w.length]);while(w.length<3)w.push(iv2[j++]);
+ var o=[oo(asm(two?[sf[0],sf[1]]:[sf[0]]),true,"")];
+ w.forEach(function(f,k){o.push(oo(asm(two?[f,sf[2+k]]:[f]),false,"porušuje "+V(f,T)+"."))});
+ var all=T.i.concat(T.c);
+ return{n:nm(),t:all,o:o,l:"D = všechna témata ∖ {"+all.join("; ")+"}."+(nc?" Kategorie jsou celé oblasti, ne jednotlivé body.":"")}}
+function gDuo(){
+ var s=shuffle(ITM.slice()),h=s[0],T1={i:[h,s[1],s[2]],c:[]},T2={i:[h,s[3],s[4]],c:[]},n1=nm(),n2=nm(),sf=fr({i:T1.i.concat(T2.i),c:[]},true),
+ f1=shuffle(BK.filter(function(f){return V(f,T1)&&!V(f,T2)})),f2=shuffle(BK.filter(function(f){return V(f,T2)&&!V(f,T1)})),fb=BK.filter(function(f){return f[0]===h})[0];
+ return{n:n1+" a "+n2+" (dvojrande)",t:[n1+": "+T1.i.join(", "),n2+": "+T2.i.join(", ")],o:[oo(asm([sf[0],sf[1]]),true,""),oo(asm([f1[0],sf[2]]),false,n1+" – porušuje "+V(f1[0],T1)+"."),oo(asm([f2[0],sf[3]]),false,n2+" – porušuje "+V(f2[0],T2)+"."),oo(asm([fb,sf[4]]),false,"oba – porušuje "+V(fb,T1)+".")],l:"Hledáme průnik D("+n1+") ∩ D("+n2+"): věta nesmí obsahovat tabu ani jednoho z nich."}}
+function gNum(){
+ var a=P(ints(-3,8)),b=a+P(ints(4,9)),cl=R()<.5,tp=P(NTP),T={i:shuffle(ITM.slice()).slice(0,2),c:[]},ins=ints(a+1,b-1),
+ g=cl&&R()<.6?P([a,b]):P(ins),lo=cl?a-P([1,2,3]):a,hi=(!cl&&R()<.5)?b:b+P([1,2,3]),vf=fr(T,false)[0],rs=rsF(a,b,cl);
+ return{n:nm(),t:["čísla mimo "+iv(a,b,cl)].concat(T.i),o:[oo(tp(g),true,""),oo(tp(lo),false,rs(lo)),oo(tp(hi),false,rs(hi)),oo(tp(P(ins))+" "+vf[2],false,"porušuje "+V(vf,T)+".")],l:"D = "+iv(a,b,cl)+(cl?" je uzavřený interval, hranice patří dovnitř.":" je otevřený interval, hranice nepatří dovnitř.")}}
+function gDN(){
+ var A=P(ints(15,25)),B=A+P(ints(5,12)),tp=P(NTP),n1=nm(),n2=nm(),h=P(ITM),fb=BK.filter(function(f){return f[0]===h})[0];
+ return{n:n1+" a "+n2+" (dvojrande)",t:[n1+": čísla menší než "+A,n2+": čísla větší než "+B,"oba: "+h],o:[oo(tp(P(ints(A,B))),true,""),oo(tp(A-P(ints(1,6))),false,n1+" – číslo je menší než "+A+"."),oo(tp(B+P(ints(1,6))),false,n2+" – číslo je větší než "+B+"."),oo(tp(P(ints(A,B)))+" "+fb[2],false,"oba – porušuje téma „"+h+"“.")],l:"Průnik: ⟨"+A+"; ∞) ∩ (−∞; "+B+"⟩ = ⟨"+A+"; "+B+"⟩. Hranice patří dovnitř, protože tabu je ostré („menší než“, „větší než“)."}}
+function gMix(){
+ var a=P(ints(0,6)),b=a+P(ints(8,20)),cl=R()<.5,tp=P(NTP),T={i:shuffle(ITM.slice()).slice(0,1),c:shuffle(CAT.slice()).slice(0,1)},ins=ints(a+1,b-1),
+ g=cl&&R()<.5?P([a,b]):P(ins),lo=cl?a-P([1,2,3]):a,hi=b+P([1,2,3]),sf=fr(T,true),rs=rsF(a,b,cl),
+ vf=shuffle(BK.filter(function(f){return f[1]&&T.c.indexOf(f[1])>=0}))[0];
+ return{n:nm(),t:["čísla mimo "+iv(a,b,cl),T.i[0],T.c[0]],o:[oo(sf[0][2]+" "+tp(g),true,""),oo(sf[1][2]+" "+tp(lo),false,rs(lo)),oo(sf[2][2]+" "+tp(hi),false,rs(hi)),oo(vf[2]+" "+tp(P(ins)),false,"porušuje kategorii „"+T.c[0]+"“.")],l:"Platí všechno najednou: téma mimo tabu, mimo kategorii a číslo z "+iv(a,b,cl)+"."}}
+function gE1(){
+ var A=P([3,4,5,6]),r=P([1,2]),tp=P(NQ),ok=ints(-5,A-1).filter(function(x){return Math.abs(x)!==r}),sr=P([r,-r]);
+ return{n:nm()+" (matematik)",t:["čísla x, pro která není definován výraz ln("+A+" − x) / (x² − "+r*r+")"],o:[oo(s2(tp,P(ok),P(ok)),true,""),oo(s2(tp,P(ok),A),false,"číslo "+A+" leží na hranici, logaritmus vyžaduje "+A+" − x > 0."),oo(s2(tp,P(ok),sr),false,"číslo "+nf(sr)+" nuluje jmenovatel."),oo(s2(tp,P(ok),A+P([1,2,3])),false,"číslo je větší než "+A+", logaritmus by byl ze záporného čísla.")],l:"ln("+A+" − x) vyžaduje x < "+A+" (ostře), jmenovatel x² − "+r*r+" ≠ 0 vylučuje čísla ±"+r+". D = (−∞; "+A+") ∖ {"+nf(-r)+"; "+r+"}."}}
+function gE2(){
+ var k=P([2,3,4]),m=k+P([1,2,3]),tp=P(NQ),pool=ints(-8,10).filter(function(x){return(x<=-k||x>=k)&&x!==m}),gp=shuffle(ints(-k+1,k-1)),why=function(x){return"číslo "+nf(x)+" leží v „díře“ mezi "+nf(-k)+" a "+k+"."};
+ return{n:nm(),t:["čísla x, pro která není definován výraz √(x² − "+k*k+") / (x − "+m+")"],o:[oo(s2(tp,P([-k,k]),P(pool)),true,""),oo(s2(tp,P(pool),m),false,"číslo "+m+" nuluje jmenovatel."),oo(s2(tp,P(pool),gp[0]),false,why(gp[0])),oo(s2(tp,P(pool),gp[1]),false,why(gp[1]))],l:"x² − "+k*k+" ≥ 0 dává x ≤ "+nf(-k)+" nebo x ≥ "+k+", jmenovatel vylučuje "+m+". D = (−∞; "+nf(-k)+"⟩ ∪ ⟨"+k+"; "+m+") ∪ ("+m+"; ∞). Čísla "+nf(-k)+" a "+k+" patří dovnitř (neostrá nerovnost)."}}
+function gE3(){
+ var p=P([3,4,5,6]),q=p+P([7,8,9,10]),s=p+P([1,2,3,4]),par=P([0,1]),tp=P(NQ),x1=(q%2!==par)?q:q+1,
+ gd=function(){return x1+2*P([1,2,3,4])},
+ b1=P(ints(q,q+6).filter(function(x){return x%2===par})),b2=P(ints(s,q-1).filter(function(x){return x%2!==par})),b3=P(ints(0,p).filter(function(x){return x%2!==par}));
+ return{n:"Adam, Bea a Cyril (trojrande)",t:["Adam: čísla z intervalu ("+p+"; "+q+")","Bea: čísla menší než "+s,"Cyril: "+(par?"lichá":"sudá")+" čísla"],o:[oo(s2(tp,x1,gd()),true,""),oo(s2(tp,gd(),b1),false,"číslo "+b1+" je "+(par?"liché":"sudé")+", to Cyril nechce."),oo(s2(tp,gd(),b2),false,"číslo "+b2+" leží v intervalu ("+p+"; "+q+"), to Adam nechce."),oo(s2(tp,gd(),b3),false,"číslo "+b3+" je menší než "+s+", to Bea nechce.")],l:"Průnik tří oborů: x ≥ "+q+" (číslo "+q+" patří dovnitř, interval ("+p+"; "+q+") je otevřený) a navíc "+(par?"sudé":"liché")+" číslo. Obě čísla ve větě musí splnit všechno."}}
+function gE4(){
+ var L=P([16,17,18,19,20]),S=2*P(ints(21,27)),sm=function(x,y){return"Je mi "+x+" a tobě "+y+"."},c,y,x,ys=P(ints(L,S/2-1)),ye=P(ints(L,L+10)),w;
+ do{y=P(ints(L,L+8));x=y+P(ints(1,6))}while(x+y===S);c=[x,y];
+ do{y=L-P([1,2]);x=y+P(ints(1,8))}while(x+y===S);w=[x,y];
+ return{n:nm()+" (dva vstupy)",t:["x (můj věk) musí být větší než y (tvůj věk), ostře","x + y ≠ "+S,"oba věky alespoň "+L],o:[oo(sm(c[0],c[1]),true,""),oo(sm(S-ys,ys),false,"součet věků je přesně "+S+"."),oo(sm(ye,ye),false,"x se rovná y, nerovnost je ostrá."),oo(sm(w[0],w[1]),false,"věk "+w[1]+" je pod "+L+".")],l:"Funkce dvou proměnných, například √(x − y) / (x + y − "+S+"). Platí všechny podmínky najednou: x > y, x + y ≠ "+S+", x ≥ "+L+", y ≥ "+L+"."}}
+function gE5(){
+ var a=P(ints(-3,1)),b=a+P(ints(3,5)),M=b+P(ints(3,5)),tp=P(NQ),W=P(["vlastně","prostě","určitě","hlavně"]),Ls=ints(a-4,a-1),Rs=ints(b+1,M-1),bd=P([b,M]);
+ return{n:nm()+" (finále)",t:["čísla x, pro která není definován výraz ln("+qd(a,b)+") / √("+M+" − x)","slovo „"+W+"“"],o:[oo(s2(tp,P(Ls),P(Rs)),true,""),oo(W.charAt(0).toUpperCase()+W.slice(1)+", "+lc(s2(tp,P(Ls),P(Rs))),false,"obsahuje zakázané slovo „"+W+"“."),oo(s2(tp,a,P(Rs)),false,"číslo "+nf(a)+" leží na hranici, logaritmus vyžaduje kladný argument."),oo(s2(tp,P(Ls),bd),false,"číslo "+bd+(bd===b?" leží na hranici (x > "+nf(b)+" ostře).":" nuluje jmenovatel ln("+M+" − x)."))],l:qd(a,b)+" = (x − "+nf(a)+")(x − "+nf(b)+") > 0 dává x < "+nf(a)+" nebo x > "+nf(b)+" (ostře), √("+M+" − x) ve jmenovateli vyžaduje x < "+M+". D = (−∞; "+nf(a)+") ∪ ("+nf(b)+"; "+M+"). Věta se správnými čísly padá i kvůli zakázanému slovu."}}
+function mk(i){
+ if(i<5)return gTop([3,4,4,5,5][i],0,i>=2);
+ var G={cat:function(){return gTop(3,2,true)},duo:gDuo,duoN:gDN,num:gNum,mix:gMix,E1:gE1,E2:gE2,E3:gE3,E4:gE4,E5:gE5};
+ return G[i<10?ORD2[i-5]:ORD3[i-10]]()}
+function gen(i){for(var t=0;t<40;t++){var g=mk(i),s={},n=0;g.o.forEach(function(o){if(!s[o.t]){s[o.t]=1;n++}});if(n===4){g.o=shuffle(g.o);return g}}return mk(i)}
+var q,items,hid,sel,locked,used,rid=0,armed=false,cur;
+function show(id){["start","game","end"].forEach(function(s){$(s).hidden=s!==id})}
+function vis(){var r=[];items.forEach(function(x,i){if(!hid.has(i))r.push(i)});return r}
+function ci(){for(var i=0;i<items.length;i++)if(items[i].ok)return i}
+function safeAt(i){return i>=10?LV[10]:i>=5?LV[5]:LV[0]}
+function start(){ORD2=shuffle(["cat","duo","duoN","num","mix"]);ORD3=shuffle(["E1","E2","E3","E4","E5"]);NS=[];q=0;used={f:0,a:0,p:0};show("game");round()}
+function lifelines(){[["l5","f"],["la","a"],["lp","p"]].forEach(function(p){$(p[0]).disabled=!!used[p[1]]||locked;$(p[0]).classList.toggle("used",!!used[p[1]])})}
+function ladder(){var h="";for(var i=15;i>=0;i--)h+='<li class="'+(i===q?"cur":i<q?"done":"")+" "+(i===5||i===10?"safe":"")+'">'+(i===15?"🏆 ":"")+LV[i]+(i===5||i===10?" 🔒 milník":"")+"</li>";$("lad").innerHTML=h}
+function round(){
+  rid++;var part=q<5?1:q<10?2:3;cur=gen(q);items=cur.o;
+  cur.e=cur.l+" Ostatní věty: "+items.map(function(x,i){return x.ok?"":LET[i]+" – "+x.b}).filter(Boolean).join(" ");
+  hid=new Set();sel=null;locked=false;armed=false;
+  $("gr").innerHTML='<div class="nm">'+esc(cur.n)+'</div><div class="lb">Tabu = vyloučené vstupy</div><div class="chips">'+cur.t.map(function(t){return '<span class="chip">'+esc(t)+"</span>"}).join("")+"</div>";
+  $("op").innerHTML=items.map(function(it,i){return '<button class="opt" data-i="'+i+'"><span class="l">'+LET[i]+':</span><span>'+esc(it.t)+"</span></button>"}).join("");
+  ["aux","fb","next"].forEach(function(id){$(id).hidden=true});
+  $("qi").innerHTML="Část "+part+"/3: "+PN[part]+"<br>Otázka <b>"+(q+1)+'</b> z 15 · úroveň <b style="color:var(--gold)">'+LV[q]+"</b>";
+  $("lock").hidden=false;$("lock").disabled=true;$("walk").hidden=false;
+  $("walk").textContent=q?"Vzdát to a zůstat: "+LV[q]:"Vzdát hru";
+  lifelines();ladder();
+}
+$("go").onclick=start;$("again").onclick=start;
+$("op").onclick=function(e){var b=e.target.closest(".opt");if(!b||locked)return;var i=+b.dataset.i;if(hid.has(i))return;
+  sel=i;document.querySelectorAll(".opt").forEach(function(el,k){el.classList.toggle("sel",k===i)});$("lock").disabled=false};
+$("l5").onclick=function(){used.f=1;var w=shuffle(vis().filter(function(i){return!items[i].ok})).slice(0,2);
+  w.forEach(function(i){hid.add(i);document.querySelectorAll(".opt")[i].classList.add("gone")});
+  if(hid.has(sel)){sel=null;$("lock").disabled=true;document.querySelectorAll(".opt").forEach(function(e){e.classList.remove("sel")})}lifelines()};
+$("la").onclick=function(){used.a=1;var v=vis(),c=ci();
+  var pc=Math.min(.95,Math.max(.3,.88-q*.05+(R()-.5)*.2));if(v.length===2)pc=Math.min(.95,pc+.2);
+  var wr=v.filter(function(i){return i!==c}),w=wr.map(function(){return R()+.15}),s=w.reduce(function(a,b){return a+b},0),pct={};
+  pct[c]=Math.round(pc*100);var acc=pct[c];
+  wr.forEach(function(i,k){if(k<wr.length-1){pct[i]=Math.round((1-pc)*100*w[k]/s);acc+=pct[i]}else pct[i]=Math.max(0,100-acc)});
+  $("aux").innerHTML="<b>Hlasuje publikum</b>"+v.map(function(i){return '<div class="bar"><span class="bl">'+LET[i]+'</span><div class="bt"><div style="width:'+pct[i]+'%"></div></div><span class="pc">'+pct[i]+"&nbsp;%</span></div>"}).join("");
+  $("aux").hidden=false;lifelines()};
+$("lp").onclick=function(){used.p=1;var my=rid,tc=R()<.5,nm=tc?pick(["pan učitel Novák","paní profesorka Dvořáková","pan učitel Svoboda"]):pick(["Honza","Tereza","Martin","Klára","Petr"]);
+  $("aux").innerHTML=tc?"📞 Voláš učiteli ("+nm+")…":"📞 Voláš kámošovi ("+nm+") po párty… dlouho to vyzvání…";$("aux").hidden=false;lifelines();
+  setTimeout(function(){if(my!==rid)return;
+    var v=vis(),c=ci(),good=tc||R()<Math.max(.25,.75-q*.05),wr=v.filter(function(i){return i!==c}),ch=(good||!wr.length)?c:pick(wr);
+    var pre=tc?pick(["Dobrý den, jen se na to podívám.","Hm, pěkný příklad, přesně takový dávám na písemky."]):pick(["Hééj, to seš ty! Počkej, jdu ven, tady hrozně hučí hudba…","Čóóó? Neslyším tě… *škytnutí* …jo, jsem to já.","Brácho, já jsem teď dost mimo, ale zkusím to…"]);
+    var post=tc?pick(["A příště se ozvi radši v pracovní době. 😉","Tak hodně štěstí."]):pick(["Ale nic nezaručuju, dneska už byl pátý panák.","Věř mi, bráško! …nebo ne. Čau."]);
+    var mid=tc?"Správná odpověď je "+LET[c]+". "+cur.e:"No takže… podle mě to bude "+LET[ch]+".";
+    $("aux").innerHTML="<b>"+nm+":</b> „"+esc(pre+" "+mid+" "+post)+"“"},1600)};
+$("lock").onclick=function(){if(sel===null)return;locked=true;lifelines();$("lock").hidden=true;$("walk").hidden=true;
+  var my=rid;setTimeout(function(){if(my===rid)reveal()},1400)};
+function reveal(){
+  var ok=items[sel].ok;
+  document.querySelectorAll(".opt").forEach(function(el,i){el.classList.remove("sel");if(items[i].ok)el.classList.add("ok");else if(i===sel)el.classList.add("bad")});
+  $("fb").innerHTML="<b>"+(ok?"Správně!":"Bohužel ne. Správná odpověď: "+LET[ci()]+".")+"</b> "+esc(cur.e);
+  $("fb").hidden=false;var n=$("next");n.hidden=false;
+  if(ok){if(q===14){n.textContent="Převzít titul 🎉";n.onclick=function(){end("win",LV[15])}}
+    else{n.textContent="Postup na úroveň "+LV[q+1]+"! "+(q===4||q===9?"Další část →":"Další otázka →");n.onclick=function(){q++;round()}}}
+  else{n.textContent="Pokračovat";n.onclick=function(){end("lose",safeAt(q))}}
+  n.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+$("walk").onclick=function(){if(!armed){armed=true;$("walk").textContent="Opravdu to vzdát? Klikni znovu.";return}end("walk",LV[q])};
+function end(k,amt){
+  $("em").textContent=k==="win"?"🏆":k==="walk"?"🚪":amt!==LV[0]?"👏":"😕";
+  $("et").textContent=k==="win"?"Jsi legenda randění!":k==="walk"?"Odcházíš s hlavou vztyčenou":"Tady to skončilo";
+  $("ep").innerHTML="Tvoje konečná úroveň: <b>"+amt+"</b>."+(k==="lose"?(amt!==LV[0]?" Zachránil tě milník, níž už nespadneš.":" Žádný milník, zpátky na začátek. Zkus to znovu."):"");
+  show("end");
+}
+</script>
+</body>
+</html>
